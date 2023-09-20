@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url('ha.jpg'); /* Initial background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: background-image 0.5s; /* Add transition for smooth background image change */
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #333;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu .logo {
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            cursor: pointer; /* Add cursor pointer for clickable effect */
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu ul li {
+            text-align: center;
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            display: block;
+            padding: 10px 0;
+            transition: color 0.3s; /* Add a transition for smooth color change */
+        }
+
+        /* Add hover effect to change text color to light blue */
+        .menu ul li a:hover {
+            color: #1A9FF9;
+            text-decoration: none; /* Remove underline on hover */
+        }
+
+        .menu-bottom {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .menu-bottom .language {
+            color: #ccc;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .menu-bottom .line {
+            background-color: #ccc;
+            height: 1px;
+            margin-top: 5px;
+        }
+
+        .content {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .content h1 {
+            margin: 0;
+            position: relative; /* Relative position for button placement */
+            color: #000; /* Default text color */
+            font-size: 24px; /* Increase font size for mobile */
+        }
+
+
+        body[data-bg="ham.jpg"] .content h1,
+        body[data-bg="hamaa.jpg"] .content h1 {
+            color: #fff; /* White text color */
+        }
+
+
+
+        /* Style the input elements with blue border and larger size */
+        .form-row input,
+        .form-row select {
+            width: 80%; /* Set the width to 80% */
+            padding: 10px; /* Increase padding for larger size */
+            border: 2px solid #1A9FF9; /* Add blue border */
+            border-radius: 5px;
+            font-size: 18px; /* Increase font size */
+        }
+
+        /* Style the login and sign-up buttons to be smaller */
+        .button {
+            background-color: #1A9FF9;
+            color: #fff;
+            padding: 10px 30px; /* Decrease padding for smaller buttons */
+            border: none;
+            border-radius: 5px;
+            font-size: 20px; /* Decrease font size for smaller buttons */
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        /* Change background color of the button to black on hover */
+        .button:hover {
+            background-color: #000;
+        }
+
+        /* Keyframes animation for the shadow effect */
+        @keyframes shadow-animation {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+        }
+        * Style for pricing plan items with borders */
+        .pricing-plans-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: right; /* Align text to the right */
+            width: 30%; /* Adjust width as needed */
+            position: relative; /* Position for labels */
+            margin-bottom: 10px; /* Add margin to the bottom of each section */
+        }
+
+        /* Add animated border on hover */
+        .pricing-plans-item::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 3px solid transparent; /* Start with a transparent border */
+            border-radius: 8px; /* Match the container's border radius */
+            transition: border 0.3s ease-in-out; /* Add a smooth transition for the border */
+        }
+
+        .pricing-plans-item:hover::before {
+            border-color: #1A9FF9; /* Change the border color to light blue on hover */
+        }
+        /* Style for pricing plan items */
+        .pricing-plans-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: right; /* Align text to the right */
+            width: 30%; /* Adjust width as needed */
+            position: relative; /* Position for labels */
+            margin-bottom: 10px; /* Add margin to the bottom of each section */
+            transition: box-shadow 0.3s ease; /* Add transition for smooth shadow change */
+        }
+
+        /* Add animated shadow when hovering over a pricing plan item */
+        .pricing-plans-item:hover {
+            animation: shadow-animation 1s infinite; /* Apply the animation on hover */
+        }
+        input::placeholder {
+            color: #999;
+        }
+        .form-row input,
+               .form-row select {
+                   width: 80%; /* Set the width to 80% */
+                   padding: 10px; /* Increase padding for larger size */
+                   border: 2px solid #1A9FF9; /* Add blue border */
+                   border-radius: 5px;
+                   font-size: 18px; /* Increase font size */
+               }
+
+               /* Style the login and sign-up buttons to be smaller */
+               .button {
+                   background-color: #1A9FF9;
+                   color: #fff;
+                   padding: 10px 30px; /* Decrease padding for smaller buttons */
+                   border: none;
+                   border-radius: 5px;
+                   font-size: 20px; /* Decrease font size for smaller buttons */
+                   cursor: pointer;
+                   margin-top: 10px;
+                   transition: background-color 0.3s;
+               }
+
+               /* Change background color of the button to black on hover */
+               .button:hover {
+                   background-color: #000;
+               }
+
+               input::placeholder {
+                   color: #999;
+               }
+
+               /* Style for the pricing sections */
+               .pricing-section {
+                   display: flex;
+                   justify-content: space-between; /* Arrange sections horizontally */
+                   margin-top: 30px;
+                    margin-left: 200px;
+                   width: 1080px;
+                   height: 80%;
+               }
+
+               /* Style for each pricing plan */
+               .pricing-plans-item {
+                   background-color: #fff;
+                   padding: 20px;
+                   border-radius: 5px;
+                   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                   text-align: right; /* Align text to the left */
+                   width: 30%; /* Adjust width as needed */
+                   position: relative; /* Position for labels */
+               }
+
+
+               /* Style for pricing plan titles */
+               .pricing-plans-item-title {
+                   font-size: 24px;
+                   margin: 10px 0;
+                   position: absolute; /* Position the labels */
+                   top: 10px; /* Adjust top position for labels */
+                   left: 10px; /* Adjust left position for labels */
+                   background-color: #1A9FF9; /* Label background color */
+                   color: #fff; /* Label text color */
+                   padding: 5px; /* Padding for labels */
+                   border-radius: 5px;
+               }
+
+               /* Style for pricing plan prices */
+               .pricing-plans-item-price {
+                   font-size: 20px;
+                   color: #1A9FF9;
+                   margin: 10px 0;
+               }
+
+               /* Style for pricing plan features */
+               .pricing-plans-item-features {
+                   list-style: none;
+                   padding: 0;
+
+               }
+               .pricing-plans-item {
+                   /* ... (existing styles) */
+                   margin-right: 20px; /* Add right margin to create space between items */
+               }
+
+               .pricing-plans-item-feature {
+                   font-size: 16px;
+                   margin: 5px 0;
+                margin-top: 40px;
+                    text-align: center;
+               }
+
+               /* Add space for the last feature */
+               .pricing-plans-item-feature:last-child {
+                   margin-bottom: 10px;
+               }
+
+               /* Style for the signup button */
+               .pricing-plans-item-button {
+                   background-color: #1A9FF9;
+                   color: #fff;
+                   padding: 10px 20px;
+                   border-radius: 5px;
+                   text-decoration: none;
+                   position: absolute;
+                   bottom: 10px; /* Adjust bottom position for buttons */
+                   right: 10px; /* Adjust right position for buttons */
+               }
+
+               .pricing-heading {
+                 text-align: center;
+                 margin-top: 20px;
+                 margin-right : 850px;
+}
+.submenu {
+                 position: relative;
+                 display: inline-block;
+             }
+
+             /* Style for the submenu trigger (the "Build Website" link) */
+             .submenu a {
+                 text-decoration: none;
+                 color: #fff;
+                 font-size: 18px;
+                 padding: 10px 0;
+                 transition: color 0.3s;
+                 position: relative;
+                  border-radius: 10px;
+
+             }
+
+             /* Style for the submenu content (the sliding bar) */
+             .submenu-content {
+                 display: none;
+                 position: absolute;
+                 background: #000000	;
+                 min-width: 160px;
+                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                 z-index: 1;
+                 transition: all 0.3s;
+                 top: 100%;
+                 left: 0;
+                 opacity: 0;
+                 transform: translateY(-10px);
+
+             }
+
+             /* Show the submenu content when hovering over the trigger */
+             .submenu:hover .submenu-content {
+                 display: block;
+                 opacity: 1;
+                 transform: translateY(0);
+                 border-radius: 10px;
+             }
+
+             /* Style for submenu items (the 4 sections) */
+             .submenu-content a {
+                 color: #fff;
+                 padding: 10px 20px;
+                 text-decoration: none;
+                 display: block;
+                 transition: background-color 0.3s;
+
+
+             }
+
+             /* Change background color of submenu items on hover */
+             .submenu-content a:hover {
+                 background-color: #333;
+
+             }
+             .submenu-content a {
+       color: #fff;
+       padding: 10px 20px;
+       text-decoration: none;
+       display: block;
+       transition: background-color 0.3s, border 0.3s; /* Add border transition */
+
+   }
+
+   /* Change background color of submenu items on hover and add a border */
+   .submenu-content a:hover {
+       background-color: #fff; /* Change background to white on hover */
+       border: 3px solid #1A9FF9; /* Add a light blue border on hover */
+       color: #1A9FF9; /* Change text color to light blue on hover */
+
+   }
+
+    </style>
+</head>
+<body data-bg="ha.jpg">
+  <div class="pricing-heading">
+      <h1>Pricing</h1>
+  </div>
+    <div class="menu">
+        <div class="logo" onclick="toggleBackground()"><a href="home.html" style="text-decoration: none; color: #fff;">SherkoPortfolio</a></div>
+        <ul>
+          <li class="submenu">
+              <a href="#">Build Website</a>
+              <div class="submenu-content">
+                <a href="AAWB.html">Artist</a>
+                <a href="DWB.html">Designer</a>
+                <a href="MAWB.html">Make-Up Artist</a>
+                <a href="ABW.html">Photographer</a>
+            </div>
+          </li>
+            <li><a href="#">See Examples</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+        <div class="menu-bottom">
+            <div class="line"></div>
+            <span class="language">EN</span> | <span class="language">PL</span>
+        </div>
+    </div>
+    <div class="pricing-section">
+       <div class="pricing-plans-item">
+           <h2 class="pricing-plans-item-title">Light</h2>
+           <p class="pricing-plans-item-price"><span>7.5</span> USD / month</p>
+
+           <ul class="pricing-plans-item-features">
+               <li class="pricing-plans-item-feature">100 Images</li>
+               <li class="pricing-plans-item-feature">10 Pages</li>
+               <li class="pricing-plans-item-feature">5 Products</li>
+           </ul>
+           <a class="pricing-plans-item-button" href="sandl.html">Sign up</a>
+       </div>
+
+       <div class="pricing-plans-item">
+           <h2 class="pricing-plans-item-title">Pro</h2>
+           <p class="pricing-plans-item-price"><span>14.5</span> USD / month</p>
+           <ul class="pricing-plans-item-features">
+               <li class="pricing-plans-item-feature">500 Images</li>
+               <li class="pricing-plans-item-feature">50 Pages</li>
+               <li class="pricing-plans-item-feature">10 Products</li>
+           </ul>
+           <a class="pricing-plans-item-button" href="sandl.html">Sign up</a>
+
+       </div>
+
+       <div class="pricing-plans-item">
+           <h2 class="pricing-plans-item-title">ProPlus</h2>
+           <p class="pricing-plans-item-price"><span>24.5</span> USD / month</p>
+           <ul class="pricing-plans-item-features">
+               <li class="pricing-plans-item-feature">1000 Images</li>
+               <li class="pricing-plans-item-feature">100 Pages</li>
+               <li class="pricing-plans-item-feature">20 Products</li>
+               <!-- Add more features here -->
+           </ul>
+           <a class="pricing-plans-item-button" href="sandl.html">Sign up</a>
+
+       </div>
+
+    <script>
+        let backgroundIndex = 0;
+        const backgrounds = ['ha.jpg', 'ham.jpg', 'hama.jpg', 'hamaa.jpg', 'hamaaa.jpg'];
+
+        function toggleBackground() {
+            const body = document.body;
+            backgroundIndex = (backgroundIndex + 1) % backgrounds.length;
+            body.style.backgroundImage = `url('${backgrounds[backgroundIndex]}')`;
+            body.setAttribute('data-bg', backgrounds[backgroundIndex]); /* Update data attribute for text color change */
+        }
+    </script>
+</body>
+</html>

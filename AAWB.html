@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SherkoPortfolio</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url('ha.jpg'); /* Initial background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: background-image 0.5s; /* Add transition for smooth background image change */
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #333;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu .logo {
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            cursor: pointer; /* Add cursor pointer for clickable effect */
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu ul li {
+            text-align: center;
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            display: block;
+            padding: 10px 0;
+            transition: color 0.3s; /* Add a transition for smooth color change */
+        }
+
+        /* Add hover effect to change text color to light blue */
+        .menu ul li a:hover {
+            color: #1A9FF9;
+            text-decoration: none; /* Remove underline on hover */
+        }
+
+        .menu-bottom {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .menu-bottom .language {
+            color: #ccc;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .menu-bottom .line {
+            background-color: #ccc;
+            height: 1px;
+            margin-top: 5px;
+        }
+
+        .content {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .content h1 {
+            margin: 0;
+            position: relative; /* Relative position for button placement */
+            color: #000; /* Default text color */
+            font-size: 20px; /* Increase font size for mobile */
+
+
+        }
+
+        /* Change the text color for the second and fourth images */
+        body[data-bg="ham.jpg"] .content h1,
+        body[data-bg="hamaa.jpg"] .content h1 {
+            color: #fff; /* White text color */
+        }
+
+        .button-container {
+            display: flex;
+            margin-left: 200px;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center items horizontally */
+
+        }
+
+        .button {
+            background-color: #1A9FF9;
+            color: #fff;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 24px; /* Increase the font size for mobile */
+            cursor: pointer;
+
+            transition: background-color 0.3s; /* Add a transition for smooth background color change */
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        /* Change background color of the button to black on hover */
+        .button:hover {
+            background-color: #000;
+        }
+
+        /* Define the keyframes for the fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Media Query for Mobile Devices */
+        @media (max-width: 768px) {
+            .menu {
+                width: 100%; /* Full width for mobile devices */
+                height: auto; /* Remove fixed height for mobile devices */
+                flex-direction: row; /* Align menu items horizontally */
+            }
+
+            .menu .logo {
+                width: auto; /* Auto width for logo on mobile devices */
+            }
+
+            .menu ul {
+                flex-direction: row; /* Align menu items horizontally on mobile devices */
+                justify-content: space-around; /* Add space between menu items */
+                width: 100%; /* Full width for menu items on mobile devices */
+                margin-top: 20px;
+            }
+
+            .menu-bottom {
+                position: static; /* Remove fixed position for language selection */
+                margin-top: 20px;
+            }
+
+            .content h1 {
+                font-size: 16px; /* Reduce font size for smaller screens */
+            }
+
+            .button {
+                font-size: 18px; /* Reduce font size for mobile devices */
+            }
+        }
+        .submenu {
+                 position: relative;
+                 display: inline-block;
+             }
+
+             /* Style for the submenu trigger (the "Build Website" link) */
+             .submenu a {
+                 text-decoration: none;
+                 color: #fff;
+                 font-size: 18px;
+                 padding: 10px 0;
+                 transition: color 0.3s;
+                 position: relative;
+                  border-radius: 10px;
+
+             }
+
+             /* Style for the submenu content (the sliding bar) */
+             .submenu-content {
+                 display: none;
+                 position: absolute;
+                 background: #000000	;
+                 min-width: 160px;
+                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                 z-index: 1;
+                 transition: all 0.3s;
+                 top: 100%;
+                 left: 0;
+                 opacity: 0;
+                 transform: translateY(-10px);
+
+             }
+
+             /* Show the submenu content when hovering over the trigger */
+             .submenu:hover .submenu-content {
+                 display: block;
+                 opacity: 1;
+                 transform: translateY(0);
+                 border-radius: 10px;
+             }
+
+             /* Style for submenu items (the 4 sections) */
+             .submenu-content a {
+                 color: #fff;
+                 padding: 10px 20px;
+                 text-decoration: none;
+                 display: block;
+                 transition: background-color 0.3s;
+             }
+
+             /* Change background color of submenu items on hover */
+             .submenu-content a:hover {
+                 background-color: #333;
+             }
+             .submenu-content a {
+       color: #fff;
+       padding: 10px 20px;
+       text-decoration: none;
+       display: block;
+       transition: background-color 0.3s, border 0.3s; /* Add border transition */
+   }
+
+   /* Change background color of submenu items on hover and add a border */
+   .submenu-content a:hover {
+       background-color: #fff; /* Change background to white on hover */
+       border: 3px solid #1A9FF9; /* Add a light blue border on hover */
+       color: #1A9FF9; /* Change text color to light blue on hover */
+   }
+   #myHeader {
+     font-size: 75px; /* Change the font size to your desired value, e.g., 24 pixels */
+     margin-top: 800px;
+     margin-left:200px;
+   }
+ }
+ body {
+     margin: 0;
+     padding: 0;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 100vh;
+ }
+
+ .container {
+     position: relative;
+ }
+
+/* Style for the individual photos */
+.photo-gallery img {
+  margin-left: 70px;
+    width: 300px; /* Adjust the width as needed */
+    height: 480px;
+    border-radius: 10px;
+    position: absolute; /* Add absolute positioning to the images */
+    opacity: 0; /* Set initial opacity to 0 */
+    transition: opacity 2s ease-in-out; /* Add a transition for opacity change */
+     z-index: -1;
+}
+
+.photo-gallery img:nth-child(1) {
+    top: 15%;
+    left: 15%;
+
+}
+
+.photo-gallery img:nth-child(2) {
+    top: 35%;
+    left: 30%;
+}
+
+.photo-gallery img:nth-child(3) {
+  top: 15%;
+  left: 45%;
+
+}
+.photo-gallery img:nth-child(4) {
+    top: 35%;
+    left: 60%;
+}
+.photo-gallery img:nth-child(5) {
+    top: 15%;
+    left: 75%;
+}
+</style>
+</head>
+<body data-bg="ha.jpg">
+    <div class="menu">
+        <div class="logo" onclick="toggleBackground()"><a href="home.html" style="text-decoration: none; color: #fff;">SherkoPortfolio</a></div>
+        <ul>
+          <li class="submenu">
+              <a href="#">Build Website</a>
+              <div class="submenu-content">
+                <a href="AAWB.html">Artist</a>
+                <a href="DWB.html">Designer</a>
+                <a href="MAWB.html">Make-Up Artist</a>
+                <a href="ABW.html">Photographer</a>
+            </div>
+          </li>
+            <li><a href="#">See Examples</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+        <div class="menu-bottom">
+            <div class="line"></div>
+            <span class="language">EN</span> | <span class="language">PL</span>
+        </div>
+    </div>
+    <div class="content">
+          <h1 id="myHeader">Create your
+art portfolio website </h1>
+        <div class="button-container">
+            <a href="sandl.html" style="text-decoration: none;" class="button button-fade-in">Start creating</a>
+        </div>
+    </div>
+    <!-- Three images that will fade in one after the other -->
+    <div class="photo-gallery">
+        <img src="aa1.jpg" alt="Sample Photo 1">
+        <img src="aa2.jpg" alt="Sample Photo 2">
+        <img src="aa3.jpg" alt="Sample Photo 3">
+        <img src="aa4.jpg" alt="Sample Photo 3">
+        <img src="aa5.jpg" alt="Sample Photo 3">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+
+        let backgroundIndex = 0;
+        const backgrounds = ['ha.jpg', 'ham.jpg', 'hama.jpg', 'hamaa.jpg', 'hamaaa.jpg'];
+
+        function toggleBackground() {
+            const body = document.body;
+            backgroundIndex = (backgroundIndex + 1) % backgrounds.length;
+            body.style.backgroundImage = `url('${backgrounds[backgroundIndex]}')`;
+            body.setAttribute('data-bg', backgrounds[backgroundIndex]); /* Update data attribute for text color change */
+        }
+        // JavaScript for fading in the images one by one
+        const images = document.querySelectorAll('.photo-gallery img');
+        let imageIndex = 0;
+
+        function fadeInImages() {
+            if (imageIndex < images.length) {
+                images[imageIndex].style.opacity = '1';
+                imageIndex++;
+                setTimeout(fadeInImages, 2000); // Adjust the delay (in milliseconds) between each image
+            }
+        }
+
+        window.onload = function () {
+            fadeInImages(); // Start fading in images when the page loads
+        };
+    </script>
+</body>
+</html>
